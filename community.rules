@@ -1,0 +1,58 @@
+###############################################################################
+# Snort 3 Community Rules
+# Author: H4ckd4d
+# Description: Basic community rules for Snort 3 to detect common network activities.
+# Version: 1.0 
+# Date: 2024-12-19
+###############################################################################
+
+###############################################################################
+# ICMP Detection Rules
+###############################################################################
+
+# Detect any ICMP ping traffic
+alert icmp any any -> any any (msg:"Ping detected"; sid:1000001; rev:1;)
+
+###############################################################################
+# HTTP Traffic Detection Rules
+###############################################################################
+
+# Detect HTTP traffic on port 80
+alert tcp any any -> any 80 (msg:"HTTP traffic detected"; sid:1000002; rev:1;)
+
+###############################################################################
+# SSH Traffic Detection Rules
+###############################################################################
+
+# Detect SSH connection attempts on port 22
+alert tcp any any -> any 22 (msg:"SSH connection attempt detected"; sid:1000003; rev:1;)
+
+###############################################################################
+# FTP Traffic Detection Rules
+###############################################################################
+
+# Detect FTP connection attempts on port 21
+alert tcp any any -> any 21 (msg:"FTP connection attempt detected"; sid:1000004; rev:1;)
+
+###############################################################################
+# Telnet Traffic Detection Rules
+###############################################################################
+
+# Detect Telnet connection attempts on port 23
+alert tcp any any -> any 23 (msg:"Telnet connection attempt detected"; sid:1000005; rev:1;)
+
+###############################################################################
+# Brute Force Attack Detection
+###############################################################################
+
+# Detect multiple TCP connection attempts from the same source
+alert tcp any any -> any any (msg:"Potential brute force attack detected"; \
+    threshold:type both, track by_src, count 5, seconds 60; sid:1000006; rev:1;)
+
+###############################################################################
+# Custom Detection Rules
+###############################################################################
+
+# Add custom rules below:
+# Example: alert tcp any any -> any 8080 (msg:"Custom HTTP on port 8080 detected"; sid:1000007; rev:1;)
+
