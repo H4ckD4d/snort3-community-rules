@@ -2,7 +2,7 @@
 A collection of basic rules for Snort 3 to detect common network activities.
 
 ## Version
-1.0 Hackd4d
+1.0 HackD4d
 
 ## Rules Included
 - ICMP detection (ping)
