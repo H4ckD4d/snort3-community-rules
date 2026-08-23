@@ -1,0 +1,71 @@
+name: Detection proposal
+description: Propose a new defensive detection or coverage improvement.
+title: "[Detection] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve **h4ckd4d Detection Engineering**.
+
+        Original creator, project owner, and primary maintainer: **Chris Cruz | h4ckd4d**.
+
+  - type: input
+    id: objective
+    attributes:
+      label: Detection objective
+      description: What defensive behavior or condition should be detected?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Preferred engine
+      options:
+        - Snort 3
+        - Suricata
+        - Sigma
+        - Multi-engine
+        - Not sure / design discussion
+    validations:
+      required: true
+
+  - type: textarea
+    id: telemetry
+    attributes:
+      label: Required telemetry
+      description: Describe the data source, event source, or network visibility required.
+    validations:
+      required: true
+
+  - type: textarea
+    id: benign
+    attributes:
+      label: Expected benign cases / false positives
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: Proposed validation approach
+      description: Prefer synthetic fixtures, sanitized events, or engine-native validation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: attack
+    attributes:
+      label: ATT&CK context, if directly supported
+      description: Leave blank if the observable does not justify a mapping.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I will not include credentials, victim data, sensitive third-party infrastructure, or weaponized payloads.
+          required: true

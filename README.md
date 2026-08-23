@@ -4,7 +4,7 @@
 
 **h4ckd4d Detection Engineering** is a defensive detection-content framework for building, documenting, testing, and maintaining portable security detections across **Snort 3**, **Suricata**, and **Sigma**.
 
-The project evolves the original `snort3-community-rules` collection into a structured Blue Team / SOC engineering repository focused on detection quality, reproducibility, false-positive control, ATT&CK-aware context, and safe synthetic validation.
+The project evolves the original `snort3-community-rules` collection into a structured Blue Team / SOC engineering repository focused on detection quality, reproducibility, false-positive control, ATT&CK-aware context, coverage visibility, and safe synthetic validation.
 
 > **Defensive use only:** The repository is designed for monitoring environments you own or administer. Test fixtures use documentation-safe or synthetic data and are not intended to reproduce harmful activity.
 
@@ -18,6 +18,8 @@ Telemetry Selection
 Detection Logic
           ↓
 Rule Metadata
+          ↓
+Coverage Mapping
           ↓
 Synthetic Validation
           ↓
@@ -42,6 +44,16 @@ Tuning / Revision
 
 The root [`community.rules`](community.rules) remains as the compact Snort 3 starter pack for backward compatibility.
 
+## Detection Coverage Matrix
+
+Every maintained rule is linked to machine-readable coverage metadata describing its domain, telemetry dependency, validation state, and tuning requirements.
+
+- [`docs/coverage-matrix.md`](docs/coverage-matrix.md) — analyst methodology and interpretation.
+- [`metadata/coverage-matrix.json`](metadata/coverage-matrix.json) — machine-readable coverage state.
+- [`metadata/rule-catalog.json`](metadata/rule-catalog.json) — authoritative detection inventory.
+
+The CI verifies that every cataloged rule has a corresponding coverage record and rejects orphaned or unknown entries.
+
 ## Rule quality standard
 
 Every maintained detection should document:
@@ -55,6 +67,7 @@ Every maintained detection should document:
 7. ATT&CK mapping when evidence supports one.
 8. Test fixture or validation method.
 9. Unique rule identifier and revision history.
+10. Coverage metadata and tuning requirements.
 
 See [`docs/rule-standard.md`](docs/rule-standard.md).
 
@@ -63,6 +76,7 @@ See [`docs/rule-standard.md`](docs/rule-standard.md).
 ```text
 .
 ├── README.md
+├── DEVELOPERS.md
 ├── community.rules
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
@@ -70,6 +84,7 @@ See [`docs/rule-standard.md`](docs/rule-standard.md).
 ├── LICENSE
 ├── docs/
 │   ├── architecture.md
+│   ├── coverage-matrix.md
 │   ├── rule-standard.md
 │   ├── testing.md
 │   └── mitre-mapping.md
@@ -78,7 +93,8 @@ See [`docs/rule-standard.md`](docs/rule-standard.md).
 │   ├── suricata/
 │   └── sigma/
 ├── metadata/
-│   └── rule-catalog.json
+│   ├── rule-catalog.json
+│   └── coverage-matrix.json
 ├── tests/
 │   └── fixtures/
 ├── scripts/
@@ -99,6 +115,19 @@ The first professionalized release focuses on conservative signals that are usef
 
 These are **signals for analyst review**, not automatic proof of malicious activity.
 
+## Planned coverage expansion
+
+The next engineering tracks are:
+
+- DNS visibility and policy detections;
+- HTTP defensive telemetry;
+- TLS and certificate-related monitoring;
+- Linux authentication and system-event telemetry;
+- cloud and identity telemetry;
+- stronger synthetic fixtures and regression tests;
+- engine-native syntax validation where feasible;
+- richer Sigma portability testing.
+
 ## ATT&CK-aware, not ATT&CK-driven
 
 MITRE ATT&CK mapping is used as analytical context only when the detection logic actually observes behavior relevant to a technique. A rule is not made better simply by attaching more ATT&CK tags.
@@ -112,9 +141,29 @@ A detection is considered maintainable when:
 - syntax can be validated by the relevant engine or schema tooling;
 - identifiers are unique;
 - metadata is complete;
+- coverage metadata is present;
 - fixtures are synthetic or sanitized;
 - expected matches and expected non-matches are documented;
 - tuning decisions are revision-controlled.
+
+## Developers wanted
+
+This is an open professional collaboration project. **Detection engineers, SOC analysts, Blue Team practitioners, developers, researchers, educators, and security-tool maintainers are invited to help improve it.**
+
+High-value contributions include:
+
+- new defensive Snort 3 / Suricata / Sigma detections;
+- false-positive tuning;
+- synthetic test fixtures;
+- engine validation and portability testing;
+- ATT&CK mapping review;
+- CI/CD and schema improvements;
+- documentation and analyst playbooks;
+- new defensive telemetry domains.
+
+Read [`DEVELOPERS.md`](DEVELOPERS.md) and [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request.
+
+Accepted contributors receive credit through Git history, pull requests, release notes, and acknowledgments where appropriate. **Project ownership and original authorship remain attributed to Chris Cruz | h4ckd4d.**
 
 ## Official references
 
@@ -129,7 +178,7 @@ This repository is the **Detection / SOC / Blue Team** pillar of Project h4ckd4d
 
 ## Contributing
 
-Read [`CONTRIBUTING.md`](CONTRIBUTING.md). Contributions should favor high-confidence defensive detections, documented assumptions, minimal false positives, and reproducible tests.
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md). Contributions should favor high-confidence defensive detections, documented assumptions, minimal false positives, reproducible tests, and professional collaboration.
 
 ## Security
 

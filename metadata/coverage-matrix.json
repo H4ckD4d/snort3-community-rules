@@ -1,0 +1,18 @@
+{
+  "project": "h4ckd4d Detection Engineering",
+  "owner": "Chris Cruz | h4ckd4d",
+  "version": "2.1.0-rc.1",
+  "updated": "2026-08-23",
+  "coverage": [
+    {"id":"H4D-NET-0001","domain":"network","telemetry":"network traffic","test_coverage":["static-validation"],"tuning_required":true},
+    {"id":"H4D-NET-0002","domain":"network","telemetry":"network traffic","test_coverage":["static-validation"],"tuning_required":true},
+    {"id":"H4D-NET-0003","domain":"network","telemetry":"network traffic","test_coverage":["static-validation"],"tuning_required":true},
+    {"id":"H4D-NET-0004","domain":"network","telemetry":"network traffic","test_coverage":["static-validation"],"tuning_required":true},
+    {"id":"H4D-NET-1001","domain":"network","telemetry":"network traffic","test_coverage":["static-validation"],"tuning_required":true},
+    {"id":"H4D-NET-1002","domain":"network","telemetry":"network traffic","test_coverage":["static-validation"],"tuning_required":true},
+    {"id":"H4D-NET-1003","domain":"network","telemetry":"network traffic","test_coverage":["static-validation"],"tuning_required":true},
+    {"id":"H4D-NET-1004","domain":"network","telemetry":"network traffic","test_coverage":["static-validation"],"tuning_required":true},
+    {"id":"H4D-WIN-2001","domain":"identity","telemetry":"Windows Security log","test_coverage":["synthetic-fixture","static-validation"],"tuning_required":true}
+  ],
+  "planned_domains": ["dns","http","tls","linux","cloud","identity"]
+}

@@ -2,7 +2,23 @@
 
 > **Project owner and original creator: Chris Cruz | h4ckd4d**
 
-Contributions are welcome when they improve defensive detection quality, portability, validation, documentation, or analyst usability.
+Contributions are welcome when they improve defensive detection quality, portability, validation, documentation, analyst usability, or engineering rigor.
+
+## Who should contribute
+
+The project welcomes:
+
+- detection engineers;
+- SOC and Blue Team analysts;
+- Snort 3 and Suricata rule authors;
+- Sigma contributors;
+- SIEM and security-platform engineers;
+- Python / CI/CD developers;
+- threat researchers;
+- educators and technical writers;
+- maintainers of defensive security tooling.
+
+See [`DEVELOPERS.md`](DEVELOPERS.md) for the broader collaboration roadmap.
 
 ## Detection contribution requirements
 
@@ -16,7 +32,8 @@ Every proposed detection should include:
 - severity and confidence;
 - a stable identifier and revision;
 - ATT&CK mapping only when the observable behavior supports it;
-- synthetic or sanitized validation evidence.
+- synthetic or sanitized validation evidence;
+- corresponding catalog and coverage metadata.
 
 ## Rule safety
 
@@ -38,7 +55,22 @@ Use documentation-safe domains, IP ranges, event samples, and synthetic fixtures
 
 ## Metadata
 
-Add or update the corresponding entry in `metadata/rule-catalog.json` whenever a maintained rule changes materially.
+Add or update the corresponding entry in `metadata/rule-catalog.json` whenever a maintained rule changes materially. Every cataloged rule must also have an entry in `metadata/coverage-matrix.json`.
+
+## Pull request expectations
+
+A professional pull request should explain:
+
+1. the detection hypothesis or engineering problem;
+2. the telemetry assumption;
+3. what the rule is expected to match;
+4. known benign cases;
+5. validation performed;
+6. tuning implications;
+7. ATT&CK mapping rationale, when applicable;
+8. files and metadata affected.
+
+Small, focused pull requests are preferred over large mixed changes.
 
 ## Validation
 
@@ -58,6 +90,12 @@ When the relevant engine is installed, also run its native syntax/schema validat
 - `test:` fixtures or validation
 - `ci:` automation
 - `chore:` maintenance
+
+## Credit and ownership
+
+Accepted contributors receive attribution through Git history and the pull request record, and may also be acknowledged in release notes or project documentation for substantial contributions.
+
+**Original authorship, project ownership, and primary maintenance remain attributed to Chris Cruz | h4ckd4d.** Contributor credit does not remove or replace the original project attribution.
 
 <!-- h4ckd4d-brand-signature:start -->
 ---
