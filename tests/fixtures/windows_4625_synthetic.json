@@ -1,0 +1,11 @@
+{
+  "EventID": 4625,
+  "Computer": "LAB-DC01.example.test",
+  "TargetUserName": "testuser",
+  "TargetDomainName": "LAB",
+  "LogonType": 3,
+  "IpAddress": "192.0.2.10",
+  "WorkstationName": "LAB-CLIENT01",
+  "fixture": true,
+  "note": "Synthetic documentation-safe event for local validation only"
+}
