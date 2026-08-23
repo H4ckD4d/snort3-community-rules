@@ -1,0 +1,57 @@
+name: Engineering improvement
+description: Propose CI, testing, metadata, documentation, portability, or architecture improvements.
+title: "[Engineering] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Professional engineering contributions are welcome.
+
+        Original creator, project owner, and primary maintainer: **Chris Cruz | h4ckd4d**.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - CI / validation
+        - Test fixtures
+        - Metadata / schemas
+        - Coverage matrix
+        - Documentation
+        - Engine portability
+        - ATT&CK review
+        - Repository architecture
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: How should the improvement be validated?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: collaboration
+    attributes:
+      label: Contribution interest
+      options:
+        - label: I am interested in helping implement or review this improvement.
+          required: false
