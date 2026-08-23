@@ -1,0 +1,23 @@
+title: Windows Failed Logon Event
+id: 1b52f2ab-8c60-4c7f-ae87-652972b570d0
+status: experimental
+description: Detects Windows Security Event ID 4625 as authentication-failure telemetry for analyst correlation.
+author: Chris Cruz | h4ckd4d
+date: 2026-08-23
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4625
+  condition: selection
+fields:
+  - TargetUserName
+  - LogonType
+  - IpAddress
+  - WorkstationName
+falsepositives:
+  - Normal user password mistakes
+  - Expired cached credentials
+  - Misconfigured services or scheduled tasks
+level: low
