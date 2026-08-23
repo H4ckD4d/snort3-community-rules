@@ -1,0 +1,44 @@
+name: Detection Engineering Validation
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, detection-engineering-v2]
+
+permissions:
+  contents: read
+
+jobs:
+  repository-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate detection catalog
+        run: python scripts/validate_catalog.py
+
+      - name: Validate JSON fixtures
+        run: |
+          python -m json.tool metadata/rule-catalog.json > /dev/null
+          python -m json.tool tests/fixtures/windows_4625_synthetic.json > /dev/null
+
+  documentation-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Lint Markdown
+        run: npx --yes markdownlint-cli2 "**/*.md" "#node_modules"
