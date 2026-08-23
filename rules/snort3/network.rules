@@ -1,0 +1,41 @@
+###############################################################################
+# h4ckd4d Detection Engineering — Snort 3 Network Rules
+# Project owner: Chris Cruz | h4ckd4d
+# Defensive lab / owned-network use only.
+###############################################################################
+
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (
+    msg:"H4CKD4D NETWORK Inbound ICMP observed";
+    classtype:misc-activity;
+    metadata:engine snort3, rule_id H4D-NET-0001, confidence low, severity informational;
+    sid:1000001;
+    rev:2;
+)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (
+    msg:"H4CKD4D REMOTE_ACCESS Inbound SSH SYN observed";
+    flags:S;
+    classtype:attempted-recon;
+    metadata:engine snort3, rule_id H4D-NET-0002, confidence medium, severity low;
+    sid:1000002;
+    rev:2;
+)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 23 (
+    msg:"H4CKD4D LEGACY_PROTOCOL Inbound Telnet SYN observed";
+    flags:S;
+    classtype:policy-violation;
+    metadata:engine snort3, rule_id H4D-NET-0003, confidence high, severity medium;
+    sid:1000003;
+    rev:2;
+)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (
+    msg:"H4CKD4D NETWORK Repeated inbound TCP SYN activity";
+    flags:S;
+    detection_filter:track by_src,count 20,seconds 60;
+    classtype:attempted-recon;
+    metadata:engine snort3, rule_id H4D-NET-0004, confidence medium, severity medium;
+    sid:1000004;
+    rev:2;
+)
